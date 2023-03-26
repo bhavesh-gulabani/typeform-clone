@@ -1,3 +1,3 @@
 # GrowthX Typeform
 
-A Typeform clone which helps users applying for the GrowthX experience.
+A Typeform clone which helps users apply for the GrowthX experience.
