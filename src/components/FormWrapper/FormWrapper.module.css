@@ -1,0 +1,8 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 93.4vh;
+  color: var(--color-white);
+}

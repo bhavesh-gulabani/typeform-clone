@@ -1,0 +1,16 @@
+header,
+main {
+  background-color: #000;
+}
+
+.logo {
+  padding-top: 18px;
+  padding-left: 15px;
+  width: 112px;
+  height: auto;
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: var(--color-primary);
+}
