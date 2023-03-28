@@ -1,0 +1,25 @@
+.container {
+  margin-top: -76px;
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+}
+
+.heading {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.content {
+  font-size: 20px;
+  line-height: 28px;
+  opacity: 0.7;
+  padding-top: 8px;
+}
+
+.button {
+  margin-top: 32px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
