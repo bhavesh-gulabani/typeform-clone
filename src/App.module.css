@@ -14,3 +14,7 @@ main {
   height: 4px;
   background-color: var(--color-primary);
 }
+
+main {
+  color: var(--color-white);
+}

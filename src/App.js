@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { FormWrapper } from './components';
-
+import formElements from './constants/form-elements';
 import styles from './App.module.css';
+
 import images from './constants/images';
 
+import { useSelector } from 'react-redux';
+import { FormWrapper } from './components';
+
 const App = () => {
-  let progressBarWidth = 0;
+  const progress = useSelector((state) => state.form.progress);
+  let progressBarWidth = progress / formElements.numberOfElements;
 
   return (
     <>
