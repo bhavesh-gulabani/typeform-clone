@@ -9,6 +9,11 @@ for (let i = 1; i < 9; i++) {
 let formData = {
   firstName: '',
   lastName: '',
+  industry: '',
+  role: '',
+  professionalGoal: '',
+  emailAddress: '',
+  phoneNumber: '',
 };
 
 const initialFormState = {
@@ -34,6 +39,15 @@ const formSlice = createSlice({
     },
     decrementProgress(state) {
       state.progress -= 100;
+    },
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
+    },
+    setElementValidity(state, action) {
+      state.formValidity[action.payload.pointer] = action.payload.isValid;
+    },
+    setFormData(state, action) {
+      state.formData = { ...state.formData, ...action.payload };
     },
   },
 });

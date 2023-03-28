@@ -9,4 +9,15 @@ const homeText = {
   },
 };
 
-export { homeText };
+const formText = {
+  firstName: {
+    labelText: "What's your first name? *",
+  },
+};
+
+const errorMessages = {
+  firstName: 'Please fill this in',
+  lastName: 'Please fill this in',
+};
+
+export { homeText, formText, errorMessages };

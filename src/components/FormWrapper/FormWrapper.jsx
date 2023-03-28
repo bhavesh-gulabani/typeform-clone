@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { errorMessages } from '../../constants/data';
 import { formActions } from '../../store/form-slice';
 
 import formElements from '../../constants/form-elements';
@@ -25,10 +26,13 @@ const FormWrapper = () => {
   const showNextElement = () => {
     formValidity[pointer]
       ? dispatch(formActions.incrementPointer())
-      : console.log('Handle validation error...');
+      : dispatch(
+          formActions.setErrorMessage(errorMessages[CurrentElement.displayName])
+        );
   };
 
   const scrollHandler = (event) => {
+    console.log(pointer);
     if (event.deltaY > 0 && pointer + 1 < formElements.numberOfElements) {
       showNextElement();
     } else if (

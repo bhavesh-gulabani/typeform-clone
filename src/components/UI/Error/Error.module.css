@@ -1,0 +1,15 @@
+.container {
+  color: var(--color-red);
+  background-color: var(--color-pink);
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 12px 4px 8px;
+  margin-top: 16px;
+}
+
+.container span {
+  font-size: 14px;
+  font-family: sans-serif;
+}
