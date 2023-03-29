@@ -13,6 +13,10 @@ const formText = {
   firstName: {
     labelText: "What's your first name? *",
   },
+  lastName: {
+    labelTextOne: 'and your last name, ',
+    labelTextTwo: '? *',
+  },
 };
 
 const errorMessages = {
