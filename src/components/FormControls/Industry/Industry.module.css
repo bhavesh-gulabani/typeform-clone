@@ -1,0 +1,130 @@
+.container {
+  margin-top: -76px;
+  display: flex;
+  flex-direction: row;
+  width: 744px;
+  margin-right: 50px;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  height: 100%;
+  margin-right: 12px;
+  padding-top: 4px;
+}
+
+.number span {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.number img {
+  margin-left: 4px;
+}
+
+.labelText {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.subLabelText {
+  margin-top: 10px;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.selectContainer {
+  display: block;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  outline: none;
+  border-bottom: 1px solid var(--color-gray);
+  margin-top: 32px;
+  padding: 0px 0px 8px;
+  z-index: 50;
+}
+
+.selectContainerFocused {
+  box-shadow: 0 2px 0 var(--color-white);
+
+  display: block;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  outline: none;
+  margin-top: 32px;
+  padding: 0px 0px 8px;
+  z-index: 50;
+}
+
+.placeholder {
+  color: var(--color-gray);
+  font-size: 30px;
+}
+
+.selectOption {
+  font-size: 24px;
+  margin-bottom: 4px;
+  border: 1px solid var(--color-gray);
+  border-radius: 4px;
+  color: var(--color-white);
+  background-color: rgb(26, 26, 26);
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  max-width: 100%;
+  min-width: 75px;
+  min-height: 40px;
+}
+
+.selectOption:hover {
+  cursor: pointer;
+  background-color: rgb(77, 77, 77);
+}
+
+.selectMenu {
+  margin-top: 10px;
+}
+
+.selectInput {
+  font-size: 30px;
+}
+
+.selectMenuList {
+  font-size: 20px;
+}
+
+/* .selectNoOptions {
+  color: var(--color-red);
+  background-color: var(--color-pink);
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 12px 4px 8px;
+  margin-top: 16px;
+
+  font-size: 14px;
+  font-family: sans-serif;
+} */
+
+.selectNoOptions {
+  align-items: center;
+  margin-top: 16px;
+  font-size: 18px;
+  font-family: sans-serif;
+}
+
+.button {
+  margin-top: 16px;
+}
