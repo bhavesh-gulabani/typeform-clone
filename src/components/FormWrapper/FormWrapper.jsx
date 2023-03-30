@@ -31,19 +31,53 @@ const FormWrapper = () => {
         );
   };
 
+  // Throttling for scroll handler
+  let scrolling = false;
+
   const scrollHandler = (event) => {
-    if (event.deltaY > 0 && pointer + 1 < formElements.numberOfElements) {
-      showNextElement();
-    } else if (
-      event.deltaY < 0 &&
-      pointer !== formElements.numberOfElements - 1 &&
-      pointer - 1 >= 0
-    ) {
-      dispatch(formActions.decrementPointer());
-    }
+    scrolling = true;
+
+    setInterval(() => {
+      if (scrolling) {
+        console.log(event);
+        if (event.deltaY > 0 && pointer + 1 < formElements.numberOfElements) {
+          showNextElement();
+        } else if (
+          event.deltaY < 0 &&
+          pointer !== formElements.numberOfElements - 1 &&
+          pointer - 1 >= 0
+        ) {
+          dispatch(formActions.decrementPointer());
+        }
+      }
+
+      scrolling = false;
+    }, 500);
   };
 
   const keyDownHandler = (event) => {
+    // Handle final form element (Ctrl + Enter case)
+    if (pointer === formElements.numberOfElements - 2) {
+      let ctrl = event.ctrlKey
+        ? event.ctrlKey
+        : event.keyCode === 17
+        ? true
+        : false;
+
+      if (event.keyCode === 13 && ctrl) {
+        showNextElement();
+      } else if (event.code === 'Enter') {
+        formValidity[pointer]
+          ? (() => {})()
+          : dispatch(
+              formActions.setErrorMessage(
+                errorMessages[CurrentElement.displayName]
+              )
+            );
+      }
+    }
+
+    // Handle form elements except the final one
     if (event.keyCode === 13 && pointer < formElements.numberOfElements - 2) {
       showNextElement();
     }

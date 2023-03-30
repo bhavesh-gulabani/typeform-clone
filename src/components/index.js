@@ -13,6 +13,7 @@ import Button from '../components/UI/Button/Button';
 import ButtonLabel from '../components/UI/ButtonLabel/ButtonLabel';
 import Error from './UI/Error/Error';
 import CheckBox from './UI/CheckBox/CheckBox';
+import Select from './UI/Select/Select';
 
 import Success from './Success/Success';
 
@@ -31,4 +32,5 @@ export {
   ButtonLabel,
   Error,
   CheckBox,
+  Select,
 };

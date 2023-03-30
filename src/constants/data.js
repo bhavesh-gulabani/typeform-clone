@@ -53,6 +53,14 @@ const formText = {
     subLabelText:
       "We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.",
   },
+  phoneNumber: {
+    labelText: 'Your phone number *',
+    subLabelText:
+      "We won't call you unless it is absolutely required to process your application.",
+  },
+  success: {
+    labelText: 'All done! Thanks for your time.',
+  },
 };
 
 const errorMessages = {
@@ -69,6 +77,13 @@ const errorMessages = {
   emailAddressErrors: [
     'Please fill this in',
     "Hmm... that email doesn't look right",
+  ],
+  phoneNumber: "Hmm... that phone number doesn't look right",
+  phoneNumberErrors: [
+    'Numbers only please',
+    'Please fill this in',
+    "Hmm... that phone number doesn't look right",
+    'Max characters reached',
   ],
 };
 
