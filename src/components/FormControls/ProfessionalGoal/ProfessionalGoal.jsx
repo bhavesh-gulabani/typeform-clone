@@ -1,7 +1,172 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { errorMessages, formText } from '../../../constants/data';
+import images from '../../../constants/images';
+import { formActions } from '../../../store/form-slice';
+import Button from '../../UI/Button/Button';
+import ButtonLabel from '../../UI/ButtonLabel/ButtonLabel';
+import CheckBox from '../../UI/CheckBox/CheckBox';
+import Error from '../../UI/Error/Error';
 
-const ProfessionalGoal = () => {
-  return <div>ProfessionalGoal</div>;
+import styles from './ProfessionalGoal.module.css';
+
+const ProfessionalGoal = ({ showNextElement }) => {
+  const dispatch = useDispatch();
+  const pointer = useSelector((state) => state.form.pointer);
+  const progress = useSelector((state) => state.form.progress);
+  const formData = useSelector((state) => state.form.formData);
+  const formValidity = useSelector((state) => state.form.formValidity);
+  let errorMessage = useSelector((state) => state.form.errorMessage);
+
+  let goals = formData.professionalGoal;
+
+  const [selectedOptions, setSelectedOptions] = useState(goals.length);
+
+  let isValid = formValidity[pointer];
+
+  useEffect(() => {
+    if (selectedOptions === 0) {
+      if (progress !== (pointer - 1) * 100)
+        dispatch(formActions.decrementProgress());
+    } else if (selectedOptions === 1) {
+      if (progress !== (pointer - 1) * 100)
+        dispatch(formActions.decrementProgress());
+    } else if (selectedOptions === 2) {
+      dispatch(formActions.setElementValidity({ pointer, isValid: true }));
+      dispatch(formActions.setErrorMessage(null));
+      if (progress < pointer * 100) dispatch(formActions.incrementProgress());
+    }
+  }, [selectedOptions, dispatch, pointer, progress]);
+
+  const goalSelectHandler = (goal) => {
+    // Reset footer
+    dispatch(formActions.setErrorMessage(null));
+
+    // Reset element validity
+    dispatch(formActions.setElementValidity({ pointer, isValid: false }));
+
+    // Unselect current option if it exists in goals
+    if (goals.includes(goal)) {
+      setSelectedOptions((prev) => prev - 1);
+
+      dispatch(
+        formActions.setFormData({
+          operation: 'POP',
+          goal,
+        })
+      );
+    } else {
+      // Add selected option to goals only if there are less than two goals
+      if (selectedOptions < 2) {
+        setSelectedOptions((prev) => prev + 1);
+
+        dispatch(formActions.setFormData({ operation: 'PUSH', goal }));
+      } else if (selectedOptions === 2) {
+        dispatch(formActions.setElementValidity({ pointer, isValid: true }));
+      }
+    }
+  };
+
+  const submitHandler = () => {
+    if (selectedOptions === 0) {
+      dispatch(
+        formActions.setErrorMessage(errorMessages.professionalGoalErrors[0])
+      );
+      if (progress !== (pointer - 1) * 100)
+        dispatch(formActions.decrementProgress());
+    } else if (selectedOptions === 1) {
+      dispatch(
+        formActions.setErrorMessage(errorMessages.professionalGoalErrors[1])
+      );
+      if (progress !== (pointer - 1) * 100)
+        dispatch(formActions.decrementProgress());
+    } else if (selectedOptions === 2) {
+      dispatch(formActions.setElementValidity({ pointer, isValid: true }));
+      dispatch(formActions.setErrorMessage(null));
+      if (progress < pointer * 100) dispatch(formActions.incrementProgress());
+
+      showNextElement();
+    }
+  };
+
+  let checkBoxes = formText.professionalGoal.goals.others.map((goal) => (
+    <CheckBox
+      type="goal"
+      letter={goal[0]}
+      label={goal[1]}
+      onClick={goalSelectHandler}
+      key={goal[0]}
+      isChecked={formData.professionalGoal.includes(goal[1])}
+    />
+  ));
+
+  if (formData.role.includes('Founder')) {
+    checkBoxes = formText.professionalGoal.goals.founder.map((goal) => (
+      <CheckBox
+        type="goal"
+        letter={goal[0]}
+        label={goal[1]}
+        onClick={goalSelectHandler}
+        key={goal[0]}
+        isChecked={formData.professionalGoal.includes(goal[1])}
+      />
+    ));
+  }
+
+  let helperText = <span>Choose 2</span>;
+
+  if (selectedOptions === 1) {
+    helperText = <span>Choose 1 more</span>;
+  } else if (selectedOptions === 2) {
+    helperText = <span></span>;
+  }
+
+  let footer = (
+    <div className={styles.button}>
+      <Button onClick={submitHandler} />
+      <ButtonLabel labelKey="Enter ↵" />
+    </div>
+  );
+
+  if (isValid) {
+    footer = (
+      <div className={styles.button}>
+        <Button onClick={submitHandler} />
+        <ButtonLabel labelKey="Enter ↵" />
+      </div>
+    );
+  }
+
+  if (errorMessage && !isValid) {
+    footer = <Error message={errorMessage} />;
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.number}>
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
+
+      <div className={styles.formControl}>
+        <label>
+          <span className={styles.labelText}>
+            {formData.firstName}
+            {formText.professionalGoal.labelText}
+          </span>
+        </label>
+
+        <div className={styles.radioGroup}>
+          <div className={styles.helperText}>{helperText}</div>
+          {checkBoxes}
+        </div>
+
+        {footer}
+      </div>
+    </div>
+  );
 };
+
+ProfessionalGoal.displayName = 'professionalGoal';
 
 export default ProfessionalGoal;

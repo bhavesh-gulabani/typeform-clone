@@ -21,12 +21,45 @@ const formText = {
     labelText: 'What industry is your company in? *',
     subLabelText: 'We will personalize your learning experience accordingly',
   },
+  role: {
+    labelText: 'Your role in your company? *',
+    subLabelText: 'We want to understand how you spend your time right now.',
+    roles: [
+      ['A', 'Founder or CXO'],
+      ['B', 'Product team'],
+      ['C', 'Marketing team'],
+      ['D', 'VC'],
+    ],
+  },
+  professionalGoal: {
+    labelText: ", what's your professional goal for the next 12 months? *",
+    goals: {
+      founder: [
+        ['A', 'Structured approach to growth'],
+        ['B', 'Build a growth team'],
+        ['C', 'Connect with like-minded people'],
+      ],
+      others: [
+        ['A', 'Get hired'],
+        ['B', 'Get promoted'],
+        ['C', 'Connect with like-minded people'],
+        ['D', 'Structured approach to growth'],
+        ['E', 'Build a growth team'],
+      ],
+    },
+  },
 };
 
 const errorMessages = {
   firstName: 'Please fill this in',
   lastName: 'Please fill this in',
   industry: 'Oops! Please make a selection',
+  role: 'Oops! Please make a selection',
+  professionalGoal: 'Oops! Please make a selection',
+  professionalGoalErrors: [
+    'Oops! Please make a selection',
+    'Please select more choices',
+  ],
 };
 
 const industries = [

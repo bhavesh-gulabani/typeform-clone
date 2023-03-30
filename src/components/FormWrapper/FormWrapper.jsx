@@ -32,7 +32,6 @@ const FormWrapper = () => {
   };
 
   const scrollHandler = (event) => {
-    console.log(pointer);
     if (event.deltaY > 0 && pointer + 1 < formElements.numberOfElements) {
       showNextElement();
     } else if (
@@ -45,7 +44,7 @@ const FormWrapper = () => {
   };
 
   const keyDownHandler = (event) => {
-    if (event.code === 'Enter' && pointer + 1 < formElements.numberOfElements) {
+    if (event.keyCode === 13 && pointer < formElements.numberOfElements - 2) {
       showNextElement();
     }
   };

@@ -10,7 +10,7 @@ import { FormWrapper } from './components';
 
 const App = () => {
   const progress = useSelector((state) => state.form.progress);
-  let progressBarWidth = progress / formElements.numberOfElements;
+  let progressBarWidth = progress / (formElements.numberOfElements - 2);
 
   return (
     <>

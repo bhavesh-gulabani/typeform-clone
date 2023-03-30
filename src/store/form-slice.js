@@ -11,7 +11,7 @@ let formData = {
   lastName: '',
   industry: '',
   role: '',
-  professionalGoal: '',
+  professionalGoal: [],
   emailAddress: '',
   phoneNumber: '',
 };
@@ -47,7 +47,18 @@ const formSlice = createSlice({
       state.formValidity[action.payload.pointer] = action.payload.isValid;
     },
     setFormData(state, action) {
-      state.formData = { ...state.formData, ...action.payload };
+      if ('goal' in action.payload) {
+        if (action.payload.operation === 'PUSH') {
+          state.formData.professionalGoal.push(action.payload.goal);
+        } else if (action.payload.operation === 'POP') {
+          state.formData.professionalGoal =
+            state.formData.professionalGoal.filter(
+              (existingGoal) => existingGoal !== action.payload.goal
+            );
+        }
+      } else {
+        state.formData = { ...state.formData, ...action.payload };
+      }
     },
   },
 });

@@ -12,6 +12,7 @@ import PhoneNumber from './FormControls/PhoneNumber/PhoneNumber';
 import Button from '../components/UI/Button/Button';
 import ButtonLabel from '../components/UI/ButtonLabel/ButtonLabel';
 import Error from './UI/Error/Error';
+import CheckBox from './UI/CheckBox/CheckBox';
 
 import Success from './Success/Success';
 
@@ -29,4 +30,5 @@ export {
   Button,
   ButtonLabel,
   Error,
+  CheckBox,
 };

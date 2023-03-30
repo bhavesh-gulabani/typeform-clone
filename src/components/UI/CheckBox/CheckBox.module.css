@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+  color: rgb(255, 255, 255);
+  padding: 12px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  border-radius: 4px;
+  max-width: 240px;
+  min-width: 75px;
+  min-height: 40px;
+}
+
+.goal {
+  max-width: 383px;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: rgb(77, 77, 77);
+}
+
+.letter {
+  padding: 5px;
+  background-color: var(--color-black);
+  font-size: 12px;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+.checked {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.text {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex: 1 1 0%;
+  min-width: 75px;
+  text-align: left;
+}
+
+.right {
+  flex-shrink: 0;
+  padding: 0px 0px 0px 20px;
+}
