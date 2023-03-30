@@ -48,6 +48,11 @@ const formText = {
       ],
     },
   },
+  emailAddress: {
+    labelText: "Email you'd like to register with? *",
+    subLabelText:
+      "We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.",
+  },
 };
 
 const errorMessages = {
@@ -59,6 +64,11 @@ const errorMessages = {
   professionalGoalErrors: [
     'Oops! Please make a selection',
     'Please select more choices',
+  ],
+  emailAddress: "Hmm... that email doesn't look right",
+  emailAddressErrors: [
+    'Please fill this in',
+    "Hmm... that email doesn't look right",
   ],
 };
 
