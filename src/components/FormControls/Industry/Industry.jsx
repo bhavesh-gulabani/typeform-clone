@@ -10,6 +10,8 @@ import { formText, industries } from '../../../constants/data';
 
 import styles from './Industry.module.css';
 
+import { motion } from 'framer-motion';
+
 const OPTIONS = industries.map((industry) => {
   return {
     value: industry,
@@ -19,6 +21,7 @@ const OPTIONS = industries.map((industry) => {
 
 const Industry = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   let errorMessage = useSelector((state) => state.form.errorMessage);
   const formData = useSelector((state) => state.form.formData);
@@ -91,48 +94,54 @@ const Industry = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
+        </div>
+
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formText.industry.labelText}
+            </span>
+            <p className={styles.subLabelText}>
+              <span>{formText.industry.subLabelText}</span>
+            </p>
+          </label>
+
+          <Select
+            ref={inputRef}
+            options={OPTIONS}
+            placeholder="Type or select an option"
+            defaultValue={selectedOption}
+            onChange={setSelectedOption}
+            value={formData.industry}
+            unstyled
+            classNames={{
+              container: (state) =>
+                state.isFocused
+                  ? styles.selectContainerFocused
+                  : styles.selectContainer,
+              placeholder: () => styles.placeholder,
+              option: (state) =>
+                state.isSelected ? styles.test : styles.selectOption,
+              menu: () => styles.selectMenu,
+              input: () => styles.selectInput,
+              menuList: () => styles.selectMenuList,
+              noOptionsMessage: () => styles.selectNoOptions,
+            }}
+          />
+
+          {footer}
+        </div>
       </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formText.industry.labelText}
-          </span>
-          <p className={styles.subLabelText}>
-            <span>{formText.industry.subLabelText}</span>
-          </p>
-        </label>
-
-        <Select
-          ref={inputRef}
-          options={OPTIONS}
-          placeholder="Type or select an option"
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
-          value={formData.industry}
-          unstyled
-          classNames={{
-            container: (state) =>
-              state.isFocused
-                ? styles.selectContainerFocused
-                : styles.selectContainer,
-            placeholder: () => styles.placeholder,
-            option: (state) =>
-              state.isSelected ? styles.test : styles.selectOption,
-            menu: () => styles.selectMenu,
-            input: () => styles.selectInput,
-            menuList: () => styles.selectMenuList,
-            noOptionsMessage: () => styles.selectNoOptions,
-          }}
-        />
-
-        {footer}
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

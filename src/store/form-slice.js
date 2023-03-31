@@ -22,6 +22,7 @@ const initialFormState = {
   formValidity,
   errorMessage: null,
   formData,
+  scrollDirection: 1, // 1 ==> DOWN, -1 ==> UP
 };
 
 const formSlice = createSlice({
@@ -30,9 +31,11 @@ const formSlice = createSlice({
   reducers: {
     incrementPointer(state) {
       state.pointer++;
+      state.scrollDirection = 1;
     },
     decrementPointer(state) {
       state.pointer--;
+      state.scrollDirection = -1;
     },
     incrementProgress(state) {
       state.progress += 100;

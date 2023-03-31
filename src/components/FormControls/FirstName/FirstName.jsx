@@ -9,8 +9,11 @@ import { formText } from '../../../constants/data';
 
 import styles from './FirstName.module.css';
 
+import { motion } from 'framer-motion';
+
 const FirstName = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   let errorMessage = useSelector((state) => state.form.errorMessage);
   const formData = useSelector((state) => state.form.formData);
@@ -71,32 +74,38 @@ const FirstName = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
+        </div>
+
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formText.firstName.labelText}
+            </span>
+          </label>
+
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Type your answer here..."
+            ref={inputRef}
+            onChange={nameChangeHandler}
+            value={firstName}
+          />
+
+          {footer}
+        </div>
       </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formText.firstName.labelText}
-          </span>
-        </label>
-
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          placeholder="Type your answer here..."
-          ref={inputRef}
-          onChange={nameChangeHandler}
-          value={firstName}
-        />
-
-        {footer}
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -9,8 +9,11 @@ import { formText } from '../../../constants/data';
 
 import styles from './LastName.module.css';
 
+import { motion } from 'framer-motion';
+
 const LastName = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   let errorMessage = useSelector((state) => state.form.errorMessage);
   const formData = useSelector((state) => state.form.formData);
@@ -73,34 +76,40 @@ const LastName = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
+        </div>
+
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formText.lastName.labelTextOne}
+              {formData.firstName}
+              {formText.lastName.labelTextTwo}
+            </span>
+          </label>
+
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Type your answer here..."
+            ref={inputRef}
+            value={lastName}
+            onChange={nameChangeHandler}
+          />
+
+          {footer}
+        </div>
       </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formText.lastName.labelTextOne}
-            {formData.firstName}
-            {formText.lastName.labelTextTwo}
-          </span>
-        </label>
-
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          placeholder="Type your answer here..."
-          ref={inputRef}
-          value={lastName}
-          onChange={nameChangeHandler}
-        />
-
-        {footer}
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

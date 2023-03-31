@@ -9,6 +9,8 @@ import { errorMessages, formText } from '../../../constants/data';
 
 import styles from './PhoneNumber.module.css';
 
+import { motion } from 'framer-motion';
+
 const validatePhone = (value) => {
   if (value === '') {
     return 'EMPTY';
@@ -142,40 +144,46 @@ const PhoneNumber = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
-      </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formText.phoneNumber.labelText}
-          </span>
-          <p className={styles.subLabelText}>
-            <span>{formText.phoneNumber.subLabelText}</span>
-          </p>
-        </label>
-
-        <div className={styles.input}>
-          <Select onSelect={extensionHandler} />
-
-          <input
-            className={styles.phone}
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            placeholder="081234 56789"
-            ref={inputRef}
-            onChange={phoneChangeHandler}
-            value={phoneNumber}
-          />
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        {footer}
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formText.phoneNumber.labelText}
+            </span>
+            <p className={styles.subLabelText}>
+              <span>{formText.phoneNumber.subLabelText}</span>
+            </p>
+          </label>
+
+          <div className={styles.input}>
+            <Select onSelect={extensionHandler} />
+
+            <input
+              className={styles.phone}
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="081234 56789"
+              ref={inputRef}
+              onChange={phoneChangeHandler}
+              value={phoneNumber}
+            />
+          </div>
+
+          {footer}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

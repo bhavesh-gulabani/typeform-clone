@@ -11,8 +11,11 @@ import Error from '../../UI/Error/Error';
 
 import styles from './Role.module.css';
 
+import { motion } from 'framer-motion';
+
 const Role = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   const progress = useSelector((state) => state.form.progress);
   let errorMessage = useSelector((state) => state.form.errorMessage);
@@ -51,35 +54,41 @@ const Role = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
-      </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>{formText.role.labelText}</span>
-          <p className={styles.subLabelText}>
-            <span>{formText.role.subLabelText}</span>
-          </p>
-        </label>
-
-        <div className={styles.radioGroup}>
-          {formText.role.roles.map((role) => (
-            <CheckBox
-              letter={role[0]}
-              label={role[1]}
-              onClick={roleSelectionHandler}
-              key={role[0]}
-              isChecked={formData.role === role[1]}
-            />
-          ))}
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        {footer}
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>{formText.role.labelText}</span>
+            <p className={styles.subLabelText}>
+              <span>{formText.role.subLabelText}</span>
+            </p>
+          </label>
+
+          <div className={styles.radioGroup}>
+            {formText.role.roles.map((role) => (
+              <CheckBox
+                letter={role[0]}
+                label={role[1]}
+                onClick={roleSelectionHandler}
+                key={role[0]}
+                isChecked={formData.role === role[1]}
+              />
+            ))}
+          </div>
+
+          {footer}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -10,8 +10,11 @@ import Error from '../../UI/Error/Error';
 
 import styles from './ProfessionalGoal.module.css';
 
+import { motion } from 'framer-motion';
+
 const ProfessionalGoal = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   const progress = useSelector((state) => state.form.progress);
   const formData = useSelector((state) => state.form.formData);
@@ -142,28 +145,34 @@ const ProfessionalGoal = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
-      </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formData.firstName}
-            {formText.professionalGoal.labelText}
-          </span>
-        </label>
-
-        <div className={styles.radioGroup}>
-          <div className={styles.helperText}>{helperText}</div>
-          {checkBoxes}
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        {footer}
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formData.firstName}
+              {formText.professionalGoal.labelText}
+            </span>
+          </label>
+
+          <div className={styles.radioGroup}>
+            <div className={styles.helperText}>{helperText}</div>
+            {checkBoxes}
+          </div>
+
+          {footer}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

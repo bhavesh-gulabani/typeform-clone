@@ -11,6 +11,8 @@ import styles from './EmailAddress.module.css';
 
 import { errorMessages } from '../../../constants/data';
 
+import { motion } from 'framer-motion';
+
 const validateEmail = (value) => {
   if (value === '') {
     return 'EMPTY';
@@ -23,6 +25,7 @@ const validateEmail = (value) => {
 
 const EmailAddress = ({ showNextElement }) => {
   const dispatch = useDispatch();
+  const scrollDirection = useSelector((state) => state.form.scrollDirection);
   const pointer = useSelector((state) => state.form.pointer);
   let errorMessage = useSelector((state) => state.form.errorMessage);
   const formData = useSelector((state) => state.form.formData);
@@ -113,35 +116,41 @@ const EmailAddress = ({ showNextElement }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.number}>
-        <span>{pointer}</span>
-        <img src={images.rightArrow} alt="Right Arrow" />
+    <motion.div
+      initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+    >
+      <div className={styles.container}>
+        <div className={styles.number}>
+          <span>{pointer}</span>
+          <img src={images.rightArrow} alt="Right Arrow" />
+        </div>
+
+        <div className={styles.formControl}>
+          <label>
+            <span className={styles.labelText}>
+              {formText.emailAddress.labelText}
+            </span>
+            <p className={styles.subLabelText}>
+              <span>{formText.emailAddress.subLabelText}</span>
+            </p>
+          </label>
+
+          <input
+            type="text"
+            id="emailName"
+            name="emailName"
+            placeholder="name@example.com"
+            ref={inputRef}
+            onChange={emailChangeHandler}
+            value={emailAddress}
+          />
+
+          {footer}
+        </div>
       </div>
-
-      <div className={styles.formControl}>
-        <label>
-          <span className={styles.labelText}>
-            {formText.emailAddress.labelText}
-          </span>
-          <p className={styles.subLabelText}>
-            <span>{formText.emailAddress.subLabelText}</span>
-          </p>
-        </label>
-
-        <input
-          type="text"
-          id="emailName"
-          name="emailName"
-          placeholder="name@example.com"
-          ref={inputRef}
-          onChange={emailChangeHandler}
-          value={emailAddress}
-        />
-
-        {footer}
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

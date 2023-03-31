@@ -8,6 +8,8 @@ import images from './constants/images';
 import { useSelector } from 'react-redux';
 import { FormWrapper } from './components';
 
+import { motion } from 'framer-motion';
+
 const App = () => {
   const progress = useSelector((state) => state.form.progress);
   let progressBarWidth = progress / (formElements.numberOfElements - 2);
@@ -19,7 +21,13 @@ const App = () => {
           className={styles['progress-bar']}
           style={{ width: `${progressBarWidth}% ` }}
         />
-        <img src={images.logoDark} alt="logo" className={styles.logo} />
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={({ duration: 0.5 }, { opacity: { duration: 0.5 } })}
+        >
+          <img src={images.logoDark} alt="logo" className={styles.logo} />
+        </motion.div>
       </header>
 
       <main>
