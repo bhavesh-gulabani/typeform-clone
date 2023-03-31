@@ -239,4 +239,6 @@ const industries = [
   'Writing and Editing',
 ];
 
-export { homeText, formText, errorMessages, industries };
+const apiURL = 'https://eo3oi83n1j77wgp.m.pipedream.net';
+
+export { homeText, formText, errorMessages, industries, apiURL };

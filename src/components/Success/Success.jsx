@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { formText } from '../../constants/data';
 
 import styles from './Success.module.css';
 
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { formActions } from '../../store/form-slice';
 
 const Success = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(formActions.resetProgress());
+  }, [dispatch]);
+
   return (
     <motion.div
       initial={{ y: 300, opacity: 0 }}

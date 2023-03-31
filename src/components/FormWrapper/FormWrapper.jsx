@@ -6,12 +6,15 @@ import { formActions } from '../../store/form-slice';
 
 import formElements from '../../constants/form-elements';
 
+import { apiURL } from '../../constants/data';
+
 import styles from './FormWrapper.module.css';
 
 const FormWrapper = () => {
   const dispatch = useDispatch();
   const pointer = useSelector((state) => state.form.pointer);
   const formValidity = useSelector((state) => state.form.formValidity);
+  const formData = useSelector((state) => state.form.formData);
 
   const sectionRef = useRef();
 
@@ -23,7 +26,37 @@ const FormWrapper = () => {
 
   let CurrentElement = formElements.componentArray[pointer];
 
+  async function onFormSubmit() {
+    // Construct package
+    let formElements = { ...formData };
+    let phoneWithExtension =
+      formElements.phoneExtension + formElements.phoneNumber;
+    formElements.phoneNumber = phoneWithExtension;
+    delete formElements.phoneExtension;
+
+    // Send request
+    const response = await fetch(apiURL, {
+      method: 'POST',
+      body: JSON.stringify(formElements),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      console.log('Successfully submitted!');
+    }
+  }
+
   const showNextElement = () => {
+    // Handle Form Submission
+    if (
+      formValidity[pointer] &&
+      pointer === formElements.numberOfElements - 2
+    ) {
+      onFormSubmit();
+    }
+
     formValidity[pointer]
       ? dispatch(formActions.incrementPointer())
       : dispatch(
