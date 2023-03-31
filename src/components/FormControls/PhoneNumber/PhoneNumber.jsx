@@ -54,12 +54,20 @@ const PhoneNumber = ({ showNextElement }) => {
       })
     );
 
-    setTimeout(() => dispatch(formActions.setErrorMessage(null)), 3000);
+    setTimeout(() => dispatch(formActions.setErrorMessage(null)), 5000);
 
     if (phoneNumberIsValid === 'VALID') {
       dispatch(formActions.setErrorMessage(null));
     }
-  }, [dispatch, phoneNumberIsValid, pointer]);
+
+    if (phoneNumberIsValid === 'VALID' && progress < pointer * 100)
+      dispatch(formActions.incrementProgress());
+    else if (
+      !(phoneNumberIsValid === 'VALID') &&
+      progress !== (pointer - 1) * 100
+    )
+      dispatch(formActions.decrementProgress());
+  }, [dispatch, phoneNumberIsValid, pointer, progress]);
 
   const phoneChangeHandler = (event) => {
     if (phoneNumberIsValid === 'LETTER') {
@@ -114,14 +122,6 @@ const PhoneNumber = ({ showNextElement }) => {
       showNextElement();
     }
   };
-
-  if (phoneNumberIsValid === 'VALID' && progress < pointer * 100)
-    dispatch(formActions.incrementProgress());
-  else if (
-    !(phoneNumberIsValid === 'VALID') &&
-    progress !== (pointer - 1) * 100
-  )
-    dispatch(formActions.decrementProgress());
 
   let footer = (
     <div className={`button ${styles.finalButton}`}>

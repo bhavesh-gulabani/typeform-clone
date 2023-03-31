@@ -61,7 +61,12 @@ const EmailAddress = ({ showNextElement }) => {
         })
       );
     }
-  }, [dispatch, emailIsValid, pointer]);
+
+    if (emailIsValid === 'VALID' && progress < pointer * 100)
+      dispatch(formActions.incrementProgress());
+    else if (emailIsValid !== 'VALID' && progress !== (pointer - 1) * 100)
+      dispatch(formActions.decrementProgress());
+  }, [dispatch, emailIsValid, pointer, progress]);
 
   const emailChangeHandler = (event) => {
     dispatch(formActions.setErrorMessage(null));
@@ -89,11 +94,6 @@ const EmailAddress = ({ showNextElement }) => {
       showNextElement();
     }
   };
-
-  if (emailIsValid === 'VALID' && progress < pointer * 100)
-    dispatch(formActions.incrementProgress());
-  else if (emailIsValid !== 'VALID' && progress !== (pointer - 1) * 100)
-    dispatch(formActions.decrementProgress());
 
   let footer = (
     <div className="button">

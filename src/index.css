@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-@font-face {
-  font-family: 'GilroyRegular';
-  src: local('Gilroy-Regular'),
-    url('./fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -21,7 +15,7 @@
   --color-gray: #4d4d4d;
   --color-red: #af0404;
   --color-pink: #f7e6e6;
-  --font-base: 'Questrial', 'GilroyRegular', 'Roboto', sans-serif;
+  --font-base: 'Questrial', 'Roboto', sans-serif;
 }
 
 html {

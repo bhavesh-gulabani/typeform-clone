@@ -17,7 +17,7 @@ const Success = () => {
 
   return (
     <motion.div
-      initial={{ y: 300, opacity: 0 }}
+      initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
       className={styles.container}

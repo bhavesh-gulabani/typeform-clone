@@ -36,7 +36,12 @@ const LastName = ({ showNextElement }) => {
     if (nameIsValid) {
       dispatch(formActions.setErrorMessage(null));
     }
-  }, [dispatch, nameIsValid, pointer]);
+
+    if (nameIsValid && progress < pointer * 100)
+      dispatch(formActions.incrementProgress());
+    else if (!nameIsValid && progress !== (pointer - 1) * 100)
+      dispatch(formActions.decrementProgress());
+  }, [dispatch, nameIsValid, pointer, progress]);
 
   const nameChangeHandler = (event) => {
     dispatch(formActions.setFormData({ lastName: event.target.value }));
@@ -45,11 +50,6 @@ const LastName = ({ showNextElement }) => {
   const navigationHandler = () => {
     showNextElement();
   };
-
-  if (nameIsValid && progress < pointer * 100)
-    dispatch(formActions.incrementProgress());
-  else if (!nameIsValid && progress !== (pointer - 1) * 100)
-    dispatch(formActions.decrementProgress());
 
   let footer = (
     <div className="button">
