@@ -40,6 +40,10 @@ const Industry = ({ showNextElement }) => {
         inputRef.current.focus();
       }
     }, 500);
+
+    // if (formData.industry) {
+    //   setSelectedOption({ value: formData.industry, label: formData.industry });
+    // }
   }, []);
 
   useEffect(() => {
@@ -105,7 +109,10 @@ const Industry = ({ showNextElement }) => {
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div className={styles.formControl}>
+        <div
+          className={styles.formControl}
+          onWheel={(e) => e.stopPropagation()}
+        >
           <label>
             <span className={styles.labelText}>
               {formText.industry.labelText}
@@ -119,9 +126,12 @@ const Industry = ({ showNextElement }) => {
             ref={inputRef}
             options={OPTIONS}
             placeholder="Type or select an option"
-            defaultValue={selectedOption}
             onChange={setSelectedOption}
-            value={formData.industry}
+            value={
+              formData.industry
+                ? { label: formData.industry, value: formData.industry }
+                : null
+            }
             unstyled
             classNames={{
               container: (state) =>
@@ -130,12 +140,19 @@ const Industry = ({ showNextElement }) => {
                   : styles.selectContainer,
               placeholder: () => styles.placeholder,
               option: (state) =>
-                state.isSelected ? styles.test : styles.selectOption,
+                state.isFocused
+                  ? `${styles.focused} ${styles.selectOption}`
+                  : styles.selectOption,
               menu: () => styles.selectMenu,
               input: () => styles.selectInput,
               menuList: () => styles.selectMenuList,
               noOptionsMessage: () => styles.selectNoOptions,
+              singleValue: () => styles.singleVal,
             }}
+            captureMenuScroll="false"
+            noOptionsMessage={() => 'No suggestions found'}
+            onPointerDown={(e) => console.log(e.target)}
+            onPointerUp={(e) => console.log(e.target)}
           />
 
           {footer}

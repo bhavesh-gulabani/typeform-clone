@@ -14,6 +14,7 @@ let formData = {
   professionalGoal: [],
   emailAddress: '',
   phoneNumber: '',
+  phoneExtension: '+91',
 };
 
 const initialFormState = {
@@ -50,7 +51,9 @@ const formSlice = createSlice({
       state.formValidity[action.payload.pointer] = action.payload.isValid;
     },
     setFormData(state, action) {
+      console.log(action);
       if ('goal' in action.payload) {
+        console.log('Goals handler');
         if (action.payload.operation === 'PUSH') {
           state.formData.professionalGoal.push(action.payload.goal);
         } else if (action.payload.operation === 'POP') {
@@ -62,6 +65,10 @@ const formSlice = createSlice({
       } else {
         state.formData = { ...state.formData, ...action.payload };
       }
+    },
+
+    resetProgress(state) {
+      state.progress = 0;
     },
   },
 });

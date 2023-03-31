@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import styles from './Select.module.css';
 
@@ -12,10 +12,18 @@ const Select = ({ onSelect }) => {
   const [selected, setSelected] = useState(
     phoneData.filter((obj) => obj.code === 'IN')[0]
   );
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (isActive) {
+      inputRef.current.focus();
+    }
+  }, [isActive]);
 
   const [visibleOptions, setvisibleOptions] = useState(phoneData);
 
   const clickHandler = () => {
+    setvisibleOptions(phoneData);
     setIsActive(true);
   };
 
@@ -50,6 +58,7 @@ const Select = ({ onSelect }) => {
             onChange={searchHandler}
             className={styles.searchInput}
             placeholder="Search countries"
+            ref={inputRef}
           />
           <div className={styles.optionsContainer}>
             {visibleOptions.map((option) => (

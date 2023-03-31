@@ -21,8 +21,6 @@ const LastName = ({ showNextElement }) => {
 
   const inputRef = useRef();
 
-  console.log(formData);
-
   const lastName = formData.lastName;
   let nameIsValid = lastName.trim() !== '';
 

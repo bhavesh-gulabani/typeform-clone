@@ -139,8 +139,8 @@ const EmailAddress = ({ showNextElement }) => {
 
           <input
             type="text"
-            id="emailName"
-            name="emailName"
+            id="emailAddress"
+            name="emailAddress"
             placeholder="name@example.com"
             ref={inputRef}
             onChange={emailChangeHandler}

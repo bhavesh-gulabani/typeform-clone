@@ -71,7 +71,7 @@
 }
 
 .selectOption {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 4px;
   border: 1px solid var(--color-gray);
   border-radius: 4px;
@@ -104,6 +104,14 @@
   font-size: 20px;
 }
 
+.singleVal {
+  font-size: 30px;
+}
+
+.indicator {
+  background-color: #fff;
+}
+
 /* .selectNoOptions {
   color: var(--color-red);
   background-color: var(--color-pink);
@@ -120,6 +128,7 @@
 
 .selectNoOptions {
   align-items: center;
+  /* color: var(--color-red); */
   margin-top: 16px;
   font-size: 18px;
   font-family: sans-serif;
@@ -127,4 +136,8 @@
 
 .button {
   margin-top: 16px;
+}
+
+.focused {
+  background-color: var(--color-gray);
 }

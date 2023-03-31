@@ -13,7 +13,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Apply to GrowthX</title>
 
-    <style preload>
+    <style>
       .loader-wrapper {
         width: 100%;
         height: 100%;
@@ -34,11 +34,7 @@
 
       .logo {
         width: 15%;
-        animation: slide-in-out 1100ms ease-out;
-      }
-
-      .logo img:nth-child(1) {
-        animation-delay: 300ms;
+        animation: slide-in-out 300ms ease-in-out;
       }
 
       .logo img {
@@ -81,16 +77,13 @@
           transform: translateY(100%);
         }
         25% {
-          opacity: 1;
-          transform: translateY(0%);
+          opacity: 0.25;
+          transform: translateY(50%);
         }
-        75% {
-          opacity: 1;
-          transform: translateY(0%);
-        }
+
         100% {
-          opacity: 0;
-          transform: translateY(-100%);
+          opacity: 1;
+          transform: translateY(0%);
         }
       }
     </style>

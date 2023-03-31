@@ -15,4 +15,4 @@ setTimeout(() => {
       <App />
     </Provider>
   );
-}, 1000);
+}, 1500);
