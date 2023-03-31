@@ -95,54 +95,53 @@ const Industry = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
-        </div>
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
 
-        <div className="formControl" onWheel={(e) => e.stopPropagation()}>
-          <label>
-            <span className="labelText">{formText.industry.labelText}</span>
-            <p className="subLabelText">
-              <span>{formText.industry.subLabelText}</span>
-            </p>
-          </label>
+      <div className="formControl" onWheel={(e) => e.stopPropagation()}>
+        <label>
+          <span className="labelText">{formText.industry.labelText}</span>
+          <p className="subLabelText">
+            <span>{formText.industry.subLabelText}</span>
+          </p>
+        </label>
 
-          <Select
-            ref={inputRef}
-            options={OPTIONS}
-            placeholder="Type or select an option"
-            onChange={setSelectedOption}
-            value={
-              formData.industry
-                ? { label: formData.industry, value: formData.industry }
-                : null
-            }
-            unstyled
-            classNames={{
-              container: (state) =>
-                state.isFocused
-                  ? styles.selectContainerFocused
-                  : styles.selectContainer,
-              placeholder: () => styles.placeholder,
-              option: (state) =>
-                state.isFocused
-                  ? `${styles.focused} ${styles.selectOption}`
-                  : styles.selectOption,
-              menu: () => styles.selectMenu,
-              input: () => styles.selectInput,
-              menuList: () => styles.selectMenuList,
-              noOptionsMessage: () => styles.selectNoOptions,
-              singleValue: () => styles.singleVal,
-            }}
-            captureMenuScroll="false"
-            noOptionsMessage={() => 'No suggestions found'}
-          />
+        <Select
+          ref={inputRef}
+          options={OPTIONS}
+          placeholder="Type or select an option"
+          onChange={setSelectedOption}
+          value={
+            formData.industry
+              ? { label: formData.industry, value: formData.industry }
+              : null
+          }
+          unstyled
+          classNames={{
+            container: (state) =>
+              state.isFocused
+                ? styles.selectContainerFocused
+                : styles.selectContainer,
+            placeholder: () => styles.placeholder,
+            option: (state) =>
+              state.isFocused
+                ? `${styles.focused} ${styles.selectOption}`
+                : styles.selectOption,
+            menu: () => styles.selectMenu,
+            input: () => styles.selectInput,
+            menuList: () => styles.selectMenuList,
+            noOptionsMessage: () => styles.selectNoOptions,
+            singleValue: () => styles.singleVal,
+          }}
+          captureMenuScroll="false"
+          noOptionsMessage={() => 'No suggestions found'}
+        />
 
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

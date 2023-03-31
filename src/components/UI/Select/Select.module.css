@@ -100,3 +100,25 @@
   margin-left: 16px;
   overflow: hidden;
 }
+
+@media screen and (max-width: 800px) {
+  .modalContainer {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modalContainer {
+    width: 85%;
+  }
+
+  .option {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modalContainer {
+    width: 80%;
+  }
+}

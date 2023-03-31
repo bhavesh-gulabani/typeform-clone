@@ -8,7 +8,7 @@
   margin-bottom: 8px;
   font-size: 20px;
   border-radius: 4px;
-  max-width: 240px;
+  max-width: 230px;
   min-width: 75px;
   min-height: 40px;
 }
@@ -52,4 +52,14 @@
 .right {
   flex-shrink: 0;
   padding: 0px 0px 0px 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    font-size: 16px;
+  }
+
+  .goal {
+    max-width: 300px;
+  }
 }

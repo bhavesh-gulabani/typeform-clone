@@ -146,28 +146,27 @@ const ProfessionalGoal = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
+
+      <div className="formControl">
+        <label>
+          <span className="labelText">
+            {formData.firstName}
+            {formText.professionalGoal.labelText}
+          </span>
+        </label>
+
+        <div className={styles.radioGroup}>
+          <div className={styles.helperText}>{helperText}</div>
+          {checkBoxes}
         </div>
 
-        <div className="formControl">
-          <label>
-            <span className="labelText">
-              {formData.firstName}
-              {formText.professionalGoal.labelText}
-            </span>
-          </label>
-
-          <div className={styles.radioGroup}>
-            <div className={styles.helperText}>{helperText}</div>
-            {checkBoxes}
-          </div>
-
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

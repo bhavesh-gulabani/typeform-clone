@@ -76,34 +76,33 @@ const LastName = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
-        </div>
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
 
-        <div className="formControl">
-          <label>
-            <span className="labelText">
-              {formText.lastName.labelTextOne}
-              {formData.firstName}
-              {formText.lastName.labelTextTwo}
-            </span>
-          </label>
+      <div className="formControl">
+        <label>
+          <span className="labelText">
+            {formText.lastName.labelTextOne}
+            {formData.firstName}
+            {formText.lastName.labelTextTwo}
+          </span>
+        </label>
 
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="Type your answer here..."
-            ref={inputRef}
-            value={lastName}
-            onChange={nameChangeHandler}
-          />
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Type your answer here..."
+          ref={inputRef}
+          value={lastName}
+          onChange={nameChangeHandler}
+        />
 
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

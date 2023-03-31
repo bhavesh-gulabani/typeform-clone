@@ -11,3 +11,40 @@
 .phone {
   width: 60%;
 }
+
+@media screen and (max-width: 1022px) {
+  .finalButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 200px;
+  }
+
+  .finalButtonLabel {
+    display: none;
+  }
+
+  .finalButton button {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .finalButton {
+    margin-right: 0px;
+    width: 90%;
+  }
+
+  .finalButton button {
+    width: 100%;
+  }
+
+  .finalButtonLabel {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .phone {
+    margin-bottom: 0;
+  }
+}

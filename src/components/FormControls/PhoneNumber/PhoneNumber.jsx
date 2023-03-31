@@ -124,17 +124,23 @@ const PhoneNumber = ({ showNextElement }) => {
     dispatch(formActions.decrementProgress());
 
   let footer = (
-    <div className="button">
+    <div className={`button ${styles.finalButton}`}>
       <Button type="last" onClick={navigationHandler} />
-      <ButtonLabel labelKey="Ctrl + Enter ↵" />
+      <ButtonLabel
+        className={styles.finalButtonLabel}
+        labelKey="Ctrl + Enter ↵"
+      />
     </div>
   );
 
   if (phoneNumberIsValid === 'VALID') {
     footer = (
-      <div className="button">
+      <div id="finalButton" className={`button ${styles.finalButton}`}>
         <Button type="last" onClick={navigationHandler} />
-        <ButtonLabel labelKey="Ctrl + Enter ↵" />
+        <ButtonLabel
+          className={styles.finalButtonLabel}
+          labelKey="Ctrl + Enter ↵"
+        />
       </div>
     );
   }
@@ -148,38 +154,37 @@ const PhoneNumber = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
+
+      <div className="formControl">
+        <label>
+          <span className="labelText">{formText.phoneNumber.labelText}</span>
+          <p className={`subLabelText ${styles.phoneSubLabel}`}>
+            <span>{formText.phoneNumber.subLabelText}</span>
+          </p>
+        </label>
+
+        <div className={styles.input}>
+          <Select onSelect={extensionHandler} />
+
+          <input
+            className={styles.phone}
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="081234 56789"
+            ref={inputRef}
+            onChange={phoneChangeHandler}
+            value={phoneNumber}
+          />
         </div>
 
-        <div className="formControl">
-          <label>
-            <span className="labelText">{formText.phoneNumber.labelText}</span>
-            <p className={`subLabelText ${styles.phoneSubLabel}`}>
-              <span>{formText.phoneNumber.subLabelText}</span>
-            </p>
-          </label>
-
-          <div className={styles.input}>
-            <Select onSelect={extensionHandler} />
-
-            <input
-              className={styles.phone}
-              type="text"
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="081234 56789"
-              ref={inputRef}
-              onChange={phoneChangeHandler}
-              value={phoneNumber}
-            />
-          </div>
-
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

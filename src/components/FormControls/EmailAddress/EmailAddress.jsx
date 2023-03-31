@@ -120,33 +120,32 @@ const EmailAddress = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
-        </div>
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
 
-        <div className="formControl">
-          <label>
-            <span className="labelText">{formText.emailAddress.labelText}</span>
-            <p className={`subLabelText ${styles.emailSubLabel}`}>
-              <span>{formText.emailAddress.subLabelText}</span>
-            </p>
-          </label>
+      <div className="formControl">
+        <label>
+          <span className="labelText">{formText.emailAddress.labelText}</span>
+          <p className={`subLabelText ${styles.emailSubLabel}`}>
+            <span>{formText.emailAddress.subLabelText}</span>
+          </p>
+        </label>
 
-          <input
-            type="text"
-            id="emailAddress"
-            name="emailAddress"
-            placeholder="name@example.com"
-            ref={inputRef}
-            onChange={emailChangeHandler}
-            value={emailAddress}
-          />
+        <input
+          type="text"
+          id="emailAddress"
+          name="emailAddress"
+          placeholder="name@example.com"
+          ref={inputRef}
+          onChange={emailChangeHandler}
+          value={emailAddress}
+        />
 
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

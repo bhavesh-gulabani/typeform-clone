@@ -5,3 +5,9 @@
   line-height: 16px;
   font-weight: 500;
 }
+
+@media screen and (max-width: 600px) {
+  .label {
+    margin-left: 0;
+  }
+}

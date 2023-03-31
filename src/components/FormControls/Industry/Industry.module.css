@@ -78,3 +78,29 @@
 .focused {
   background-color: var(--color-gray);
 }
+
+@media screen and (max-width: 600px) {
+  .selectContainer {
+    padding: 0px 0px 5px;
+  }
+
+  .placeholder {
+    font-size: 24px;
+  }
+
+  .selectOption {
+    font-size: 16px;
+  }
+
+  .selectInput {
+    font-size: 24px;
+  }
+
+  .selectMenuList {
+    font-size: 16px;
+  }
+
+  .singleVal {
+    font-size: 24px;
+  }
+}

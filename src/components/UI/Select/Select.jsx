@@ -65,6 +65,7 @@ const Select = ({ onSelect }) => {
               <div
                 className={styles.option}
                 onClick={selectHandler.bind(null, option)}
+                key={option.code}
               >
                 <img src={option.flag} alt="flag" />
                 <span className={styles.firstOpt}>{option.country}</span>

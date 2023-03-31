@@ -55,35 +55,34 @@ const Role = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
+      className="container"
     >
-      <div className="container">
-        <div className="number">
-          <span>{pointer}</span>
-          <img src={images.rightArrow} alt="Right Arrow" />
+      <div className="number">
+        <span>{pointer}</span>
+        <img src={images.rightArrow} alt="Right Arrow" />
+      </div>
+
+      <div className="formControl">
+        <label>
+          <span className="labelText">{formText.role.labelText}</span>
+          <p className="subLabelText">
+            <span>{formText.role.subLabelText}</span>
+          </p>
+        </label>
+
+        <div className={styles.radioGroup}>
+          {formText.role.roles.map((role) => (
+            <CheckBox
+              letter={role[0]}
+              label={role[1]}
+              onClick={roleSelectionHandler}
+              key={role[0]}
+              isChecked={formData.role === role[1]}
+            />
+          ))}
         </div>
 
-        <div className="formControl">
-          <label>
-            <span className="labelText">{formText.role.labelText}</span>
-            <p className="subLabelText">
-              <span>{formText.role.subLabelText}</span>
-            </p>
-          </label>
-
-          <div className={styles.radioGroup}>
-            {formText.role.roles.map((role) => (
-              <CheckBox
-                letter={role[0]}
-                label={role[1]}
-                onClick={roleSelectionHandler}
-                key={role[0]}
-                isChecked={formData.role === role[1]}
-              />
-            ))}
-          </div>
-
-          {footer}
-        </div>
+        {footer}
       </div>
     </motion.div>
   );

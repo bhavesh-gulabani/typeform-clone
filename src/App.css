@@ -20,12 +20,15 @@ main {
 }
 
 /* Common Styles */
+
 .container {
   margin-top: -76px;
   display: flex;
   flex-direction: row;
-  width: 744px;
-  margin-right: 50px;
+  /* width: 744px; */
+  flex: 1;
+  max-width: 750px;
+  margin-right: 45px;
 }
 
 .number {
@@ -93,4 +96,77 @@ input:focus {
 
 .button {
   margin-top: 16px;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 850px) {
+  .container {
+    padding: 0px 20px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .number span {
+    font-size: 14px;
+  }
+
+  .number img {
+    width: 8px;
+  }
+
+  .labelText {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .subLabelText {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  input {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button button {
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    padding: 0px 20px 0px 20px;
+  }
+
+  .formControl {
+    flex-wrap: wrap;
+  }
+
+  input {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 225px) {
+  .container {
+    padding: 0;
+  }
+
+  .formControl {
+    flex-wrap: wrap;
+  }
+
+  input {
+    width: 90%;
+  }
 }
