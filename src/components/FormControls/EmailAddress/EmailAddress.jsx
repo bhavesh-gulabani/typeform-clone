@@ -96,7 +96,7 @@ const EmailAddress = ({ showNextElement }) => {
     dispatch(formActions.decrementProgress());
 
   let footer = (
-    <div className={styles.button}>
+    <div className="button">
       <Button onClick={navigationHandler} />
       <ButtonLabel labelKey="Enter ↵" />
     </div>
@@ -104,7 +104,7 @@ const EmailAddress = ({ showNextElement }) => {
 
   if (emailIsValid === 'VALID') {
     footer = (
-      <div className={styles.button}>
+      <div className="button">
         <Button onClick={navigationHandler} />
         <ButtonLabel labelKey="Enter ↵" />
       </div>
@@ -121,18 +121,16 @@ const EmailAddress = ({ showNextElement }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
-      <div className={styles.container}>
-        <div className={styles.number}>
+      <div className="container">
+        <div className="number">
           <span>{pointer}</span>
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div className={styles.formControl}>
+        <div className="formControl">
           <label>
-            <span className={styles.labelText}>
-              {formText.emailAddress.labelText}
-            </span>
-            <p className={styles.subLabelText}>
+            <span className="labelText">{formText.emailAddress.labelText}</span>
+            <p className={`subLabelText ${styles.emailSubLabel}`}>
               <span>{formText.emailAddress.subLabelText}</span>
             </p>
           </label>

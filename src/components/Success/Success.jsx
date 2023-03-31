@@ -14,13 +14,7 @@ const Success = () => {
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
       <div className={styles.container}>
-        <div className={styles.formControl}>
-          <label>
-            <span className={styles.labelText}>
-              {formText.success.labelText}
-            </span>
-          </label>
-        </div>
+        <span className="labelText">{formText.success.labelText}</span>
       </div>
     </motion.div>
   );

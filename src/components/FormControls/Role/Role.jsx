@@ -4,7 +4,6 @@ import { formText } from '../../../constants/data';
 import images from '../../../constants/images';
 import { formActions } from '../../../store/form-slice';
 import Button from '../../UI/Button/Button';
-import ButtonLabel from '../../UI/ButtonLabel/ButtonLabel';
 
 import CheckBox from '../../UI/CheckBox/CheckBox';
 import Error from '../../UI/Error/Error';
@@ -34,17 +33,15 @@ const Role = ({ showNextElement }) => {
   };
 
   let footer = (
-    <div className={styles.button}>
+    <div className="button">
       <Button onClick={showNextElement} />
-      <ButtonLabel labelKey="Enter ↵" />
     </div>
   );
 
   if (isValid) {
     footer = (
-      <div className={styles.button}>
+      <div className="button">
         <Button onClick={showNextElement} />
-        <ButtonLabel labelKey="Enter ↵" />
       </div>
     );
   }
@@ -59,16 +56,16 @@ const Role = ({ showNextElement }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
-      <div className={styles.container}>
-        <div className={styles.number}>
+      <div className="container">
+        <div className="number">
           <span>{pointer}</span>
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div className={styles.formControl}>
+        <div className="formControl">
           <label>
-            <span className={styles.labelText}>{formText.role.labelText}</span>
-            <p className={styles.subLabelText}>
+            <span className="labelText">{formText.role.labelText}</span>
+            <p className="subLabelText">
               <span>{formText.role.subLabelText}</span>
             </p>
           </label>

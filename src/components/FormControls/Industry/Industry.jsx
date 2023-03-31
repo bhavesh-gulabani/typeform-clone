@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, ButtonLabel, Error } from '../../../components';
+import { Button, Error } from '../../../components';
 import Select from 'react-select';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +31,6 @@ const Industry = ({ showNextElement }) => {
 
   const inputRef = useRef();
 
-  // Validation condition...
   let industryIsValid = selectedOption ? selectedOption.value : false;
 
   useEffect(() => {
@@ -40,10 +39,6 @@ const Industry = ({ showNextElement }) => {
         inputRef.current.focus();
       }
     }, 500);
-
-    // if (formData.industry) {
-    //   setSelectedOption({ value: formData.industry, label: formData.industry });
-    // }
   }, []);
 
   useEffect(() => {
@@ -78,17 +73,15 @@ const Industry = ({ showNextElement }) => {
   };
 
   let footer = (
-    <div className={styles.button}>
+    <div className="button">
       <Button onClick={navigationHandler} />
-      <ButtonLabel labelKey="Enter ↵" />
     </div>
   );
 
   if (industryIsValid) {
     footer = (
-      <div className={styles.button}>
+      <div className="button">
         <Button onClick={navigationHandler} />
-        <ButtonLabel labelKey="Enter ↵" />
       </div>
     );
   }
@@ -103,21 +96,16 @@ const Industry = ({ showNextElement }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
-      <div className={styles.container}>
-        <div className={styles.number}>
+      <div className="container">
+        <div className="number">
           <span>{pointer}</span>
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div
-          className={styles.formControl}
-          onWheel={(e) => e.stopPropagation()}
-        >
+        <div className="formControl" onWheel={(e) => e.stopPropagation()}>
           <label>
-            <span className={styles.labelText}>
-              {formText.industry.labelText}
-            </span>
-            <p className={styles.subLabelText}>
+            <span className="labelText">{formText.industry.labelText}</span>
+            <p className="subLabelText">
               <span>{formText.industry.subLabelText}</span>
             </p>
           </label>
@@ -151,8 +139,6 @@ const Industry = ({ showNextElement }) => {
             }}
             captureMenuScroll="false"
             noOptionsMessage={() => 'No suggestions found'}
-            onPointerDown={(e) => console.log(e.target)}
-            onPointerUp={(e) => console.log(e.target)}
           />
 
           {footer}

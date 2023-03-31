@@ -4,7 +4,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
   color: rgb(255, 255, 255);
-  padding: 12px;
+  padding: 10px;
   margin-bottom: 8px;
   font-size: 20px;
   border-radius: 4px;
@@ -32,6 +32,7 @@
   box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
   margin-right: 8px;
   border-radius: 2px;
+  font-weight: bold;
 }
 
 .checked {

@@ -39,7 +39,6 @@ const FormWrapper = () => {
 
     setInterval(() => {
       if (scrolling) {
-        console.log(event);
         if (event.deltaY > 0 && pointer + 1 < formElements.numberOfElements) {
           showNextElement();
         } else if (

@@ -124,16 +124,16 @@ const PhoneNumber = ({ showNextElement }) => {
     dispatch(formActions.decrementProgress());
 
   let footer = (
-    <div className={styles.button}>
-      <Button onClick={navigationHandler} />
+    <div className="button">
+      <Button type="last" onClick={navigationHandler} />
       <ButtonLabel labelKey="Ctrl + Enter ↵" />
     </div>
   );
 
   if (phoneNumberIsValid === 'VALID') {
     footer = (
-      <div className={styles.button}>
-        <Button onClick={navigationHandler} />
+      <div className="button">
+        <Button type="last" onClick={navigationHandler} />
         <ButtonLabel labelKey="Ctrl + Enter ↵" />
       </div>
     );
@@ -149,18 +149,16 @@ const PhoneNumber = ({ showNextElement }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
-      <div className={styles.container}>
-        <div className={styles.number}>
+      <div className="container">
+        <div className="number">
           <span>{pointer}</span>
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div className={styles.formControl}>
+        <div className="formControl">
           <label>
-            <span className={styles.labelText}>
-              {formText.phoneNumber.labelText}
-            </span>
-            <p className={styles.subLabelText}>
+            <span className="labelText">{formText.phoneNumber.labelText}</span>
+            <p className={`subLabelText ${styles.phoneSubLabel}`}>
               <span>{formText.phoneNumber.subLabelText}</span>
             </p>
           </label>

@@ -7,8 +7,6 @@ import { formActions } from '../../../store/form-slice';
 import images from '../../../constants/images';
 import { formText } from '../../../constants/data';
 
-import styles from './LastName.module.css';
-
 import { motion } from 'framer-motion';
 
 const LastName = ({ showNextElement }) => {
@@ -54,7 +52,7 @@ const LastName = ({ showNextElement }) => {
     dispatch(formActions.decrementProgress());
 
   let footer = (
-    <div className={styles.button}>
+    <div className="button">
       <Button onClick={navigationHandler} />
       <ButtonLabel labelKey="Enter ↵" />
     </div>
@@ -62,7 +60,7 @@ const LastName = ({ showNextElement }) => {
 
   if (nameIsValid) {
     footer = (
-      <div className={styles.button}>
+      <div className="button">
         <Button onClick={navigationHandler} />
         <ButtonLabel labelKey="Enter ↵" />
       </div>
@@ -79,15 +77,15 @@ const LastName = ({ showNextElement }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
     >
-      <div className={styles.container}>
-        <div className={styles.number}>
+      <div className="container">
+        <div className="number">
           <span>{pointer}</span>
           <img src={images.rightArrow} alt="Right Arrow" />
         </div>
 
-        <div className={styles.formControl}>
+        <div className="formControl">
           <label>
-            <span className={styles.labelText}>
+            <span className="labelText">
               {formText.lastName.labelTextOne}
               {formData.firstName}
               {formText.lastName.labelTextTwo}

@@ -51,9 +51,7 @@ const formSlice = createSlice({
       state.formValidity[action.payload.pointer] = action.payload.isValid;
     },
     setFormData(state, action) {
-      console.log(action);
       if ('goal' in action.payload) {
-        console.log('Goals handler');
         if (action.payload.operation === 'PUSH') {
           state.formData.professionalGoal.push(action.payload.goal);
         } else if (action.payload.operation === 'POP') {

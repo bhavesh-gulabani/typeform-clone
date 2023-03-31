@@ -1,7 +1,7 @@
 import React from 'react';
 
 import formElements from './constants/form-elements';
-import styles from './App.module.css';
+import './App.css';
 
 import images from './constants/images';
 
@@ -18,7 +18,7 @@ const App = () => {
     <>
       <header>
         <div
-          className={styles['progress-bar']}
+          className={'progress-bar'}
           style={{ width: `${progressBarWidth}% ` }}
         />
         <motion.div
@@ -26,7 +26,7 @@ const App = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={({ duration: 0.5 }, { opacity: { duration: 0.5 } })}
         >
-          <img src={images.logoDark} alt="logo" className={styles.logo} />
+          <img src={images.logoDark} alt="logo" className="main-logo" />
         </motion.div>
       </header>
 

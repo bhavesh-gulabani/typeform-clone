@@ -24,7 +24,7 @@ const Home = () => {
       transition={
         scrollDirection < 0
           ? ({ duration: 0.3 }, { opacity: { duration: 0.4 } })
-          : ({ duration: 1.5 }, { opacity: { duration: 1.5 } })
+          : ({ duration: 0.8 }, { opacity: { duration: 0.8 } })
       }
     >
       <div className={styles.container}>
