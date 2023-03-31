@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formText } from '../../../constants/data';
 import images from '../../../constants/images';
@@ -20,6 +20,14 @@ const Role = ({ showNextElement }) => {
   let errorMessage = useSelector((state) => state.form.errorMessage);
   const formValidity = useSelector((state) => state.form.formValidity);
   const formData = useSelector((state) => state.form.formData);
+
+  const containerRef = useRef();
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.focus();
+    }
+  }, []);
 
   let isValid = formValidity[pointer];
 
@@ -55,7 +63,9 @@ const Role = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
-      className="container"
+      className={`container ${styles.roleContainer}`}
+      tabIndex={1}
+      ref={containerRef}
     >
       <div className="number">
         <span>{pointer}</span>

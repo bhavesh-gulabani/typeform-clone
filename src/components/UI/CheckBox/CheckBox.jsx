@@ -9,14 +9,28 @@ const CheckBox = ({
   label,
   onClick: clickHandler,
   isChecked,
+  selectedOptions,
 }) => {
   let containerClasses =
     type === 'goal'
       ? `${styles.container} ${styles.goal}`
       : `${styles.container}`;
 
+  let disabledClasses = selectedOptions === 2 ? `${styles.disabled}` : '';
+  if (type !== 'goal') {
+    disabledClasses = selectedOptions === 1 ? `${styles.disabled}` : '';
+  }
+
   return (
-    <div className={containerClasses} onClick={clickHandler.bind(null, label)}>
+    <div
+      className={
+        isChecked
+          ? `${containerClasses}`
+          : `${containerClasses} ${disabledClasses}`
+      }
+      onClick={clickHandler.bind(null, label)}
+      tabIndex={selectedOptions === 2 ? -1 : 5}
+    >
       <div
         className={
           isChecked ? `${styles.letter} ${styles.checked}` : `${styles.letter}`

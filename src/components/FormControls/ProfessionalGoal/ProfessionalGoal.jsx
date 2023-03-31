@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { errorMessages, formText } from '../../../constants/data';
 import images from '../../../constants/images';
@@ -25,6 +25,14 @@ const ProfessionalGoal = ({ showNextElement }) => {
   const [selectedOptions, setSelectedOptions] = useState(goals.length);
 
   let isValid = formValidity[pointer];
+
+  const containerRef = useRef();
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (selectedOptions === 0) {
@@ -99,6 +107,7 @@ const ProfessionalGoal = ({ showNextElement }) => {
       onClick={goalSelectHandler}
       key={goal[0]}
       isChecked={formData.professionalGoal.includes(goal[1])}
+      selectedOptions={selectedOptions}
     />
   ));
 
@@ -111,6 +120,7 @@ const ProfessionalGoal = ({ showNextElement }) => {
         onClick={goalSelectHandler}
         key={goal[0]}
         isChecked={formData.professionalGoal.includes(goal[1])}
+        selectedOptions={selectedOptions}
       />
     ));
   }
@@ -146,7 +156,9 @@ const ProfessionalGoal = ({ showNextElement }) => {
       initial={{ y: scrollDirection > 0 ? 300 : -300, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={({ duration: 0.3 }, { opacity: { duration: 0.4 } })}
-      className="container"
+      className={`container ${styles.goalContainer}`}
+      tabIndex={1}
+      ref={containerRef}
     >
       <div className="number">
         <span>{pointer}</span>

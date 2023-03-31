@@ -22,6 +22,11 @@
   background-color: rgb(77, 77, 77);
 }
 
+.container:focus,
+.container:focus-visible {
+  background-color: rgb(77, 77, 77);
+}
+
 .letter {
   padding: 5px;
   background-color: var(--color-black);
@@ -52,6 +57,21 @@
 .right {
   flex-shrink: 0;
   padding: 0px 0px 0px 20px;
+}
+
+.disabled {
+  opacity: 0.4;
+}
+
+.disabled:focus,
+.disabled:focus-visible {
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+}
+
+.disabled:hover {
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 0px 1px inset;
+  cursor: auto;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media screen and (max-width: 600px) {

@@ -3,3 +3,7 @@
   display: inline-flex;
   flex-flow: column wrap;
 }
+
+.roleContainer:focus {
+  outline: none;
+}
